@@ -1,0 +1,76 @@
+﻿@page
+@model BankWeb.Pages.CustomersModel
+@{
+}
+
+<h1>Alla Customers</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">
+                Customer Name
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="Name"
+                   asp-route-sortOrder="asc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-up"></i>
+
+                </a>
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="Name"
+                   asp-route-sortOrder="desc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+            </th>
+            <th scope="col">
+                City
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="City"
+                   asp-route-sortOrder="asc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-up"></i>
+
+                </a>
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="City"
+                   asp-route-sortOrder="desc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+            </th>
+            <th scope="col">
+                Country
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="Country"
+                   asp-route-sortOrder="asc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-up"></i>
+
+                </a>
+                <a asp-page="/Customers"
+                   asp-route-sortColumn="Country"
+                   asp-route-sortOrder="desc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var cust in Model.Customers)
+        {
+            <tr>
+                <td>@cust.Id</td>
+                <td>@cust.Name</td>
+                <td>@cust.City</td>
+                <td>@cust.Country</td>
+                <td><a asp-page="/Customer" asp-route-id="@cust.Id" class="btn btn-primary">View Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
