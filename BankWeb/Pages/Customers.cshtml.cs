@@ -14,11 +14,21 @@ namespace BankWeb.Pages
         {
             _customerService = customerService;
         }
+
         public List<CustomersViewModel> Customers { get; set; }
-        public void OnGet(string sortColumn, string sortOrder)
+        public int CurrentPage { get; set; }
+        public string SortColumn {  get; set; }
+        public string SortOrder { get; set; }
+        public int CustomerId {  get; set; }
+        public string SearchBox { get; set; }
+        public void OnGet(int customerId, string sortColumn, string sortOrder, int pageNo, string searchBox)
         {
-            Customers = _customerService.GetCustomers(sortColumn, sortOrder)
-            .Take(10)
+            CurrentPage = pageNo == 0 ? 1 : pageNo;
+            SortColumn = sortColumn;
+            SortOrder = sortOrder;
+            SearchBox = searchBox;
+
+            Customers = _customerService.GetCustomers(sortColumn, sortOrder, pageNo, searchBox)
             .Select(s => new CustomersViewModel
             {
                 Id = s.CustomerId,
@@ -26,6 +36,8 @@ namespace BankWeb.Pages
                 City = s.City,
                 Country = s.Country
             }).ToList();
+
+            
         }
     }
 }

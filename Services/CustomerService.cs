@@ -11,9 +11,23 @@ namespace BankWeb.Services
             _dbContext = dbContext;
         }
 
-        public List<Customer> GetCustomers(string sortColumn, string sortOrder)
+        public List<Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox)
         {
             var query = _dbContext.Customers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchBox))
+            {
+                query = query
+                    .Where(s => s.Givenname.Contains(searchBox) ||
+                    s.City.Contains(searchBox) || s.Country.Contains(searchBox));
+            }
+            var firstItemIndex = (pageNo - 1) * 10;
+            if (firstItemIndex < 0)
+            {
+                firstItemIndex = 0;
+            }
+            query = query.Skip(firstItemIndex);
+            query = query.Take(10);
 
             if (sortColumn == "Name")
                 if (sortOrder == "asc")
