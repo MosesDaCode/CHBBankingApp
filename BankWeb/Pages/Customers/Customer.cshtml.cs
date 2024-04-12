@@ -2,7 +2,7 @@ using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BankWeb.Pages
+namespace BankWeb.Pages.Customers
 {
     public class CustomerModel : PageModel
     {

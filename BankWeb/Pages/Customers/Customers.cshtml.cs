@@ -17,9 +17,9 @@ namespace BankWeb.Pages
 
         public List<CustomersViewModel> Customers { get; set; }
         public int CurrentPage { get; set; }
-        public string SortColumn {  get; set; }
+        public string SortColumn { get; set; }
         public string SortOrder { get; set; }
-        public int CustomerId {  get; set; }
+        public int CustomerId { get; set; }
         public string SearchBox { get; set; }
         public void OnGet(int customerId, string sortColumn, string sortOrder, int pageNo, string searchBox)
         {
@@ -37,7 +37,7 @@ namespace BankWeb.Pages
                 Country = s.Country
             }).ToList();
 
-            
+
         }
     }
 }

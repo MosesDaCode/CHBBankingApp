@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankWeb", "BankWeb\BankWeb.csproj", "{F49BB55C-2B7B-4AB2-BD49-7028F60BE5A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankWeb", "BankWeb\BankWeb.csproj", "{F49BB55C-2B7B-4AB2-BD49-7028F60BE5A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{91B663A2-04E7-48D6-8193-B7D84DEE9F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{91B663A2-04E7-48D6-8193-B7D84DEE9F0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{B630E3B1-EA0D-49BB-9D72-91A4E4464FB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{B630E3B1-EA0D-49BB-9D72-91A4E4464FB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
