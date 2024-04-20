@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BankWeb.ViewModels;
-using BankWeb.Services;
+using Microsoft.AspNetCore.Authorization;
+using Services.Customers;
 
-namespace BankWeb.Pages
+namespace BankWeb.Pages.Customers
 {
+    [Authorize]
     public class CustomersModel : PageModel
     {
         private readonly ICustomerService _customerService;

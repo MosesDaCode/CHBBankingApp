@@ -1,18 +1,28 @@
 ﻿@page
 @model CustomerModel
 @{
+    Layout = "_DashboardLayout";
 }
-
-<tr>
-    <div class="right-side">
-    <td>@Model.CustomerFirstName</td>
-    <td>@Model.CustomerLastName</td>
+<div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @Model.CustomerFirstName @Model.CustomerLastName
+                </h5>
+                <div>
+                    <ul>
+                        <li>Adress: @Model.CustomerAdress</li>
+                        <li>City: @Model.CustomerCity</li>
+                        <li>Zipcode: @Model.CustomerZipcode</li>
+                        <li>Country: @Model.CustomerCountry</li>
+                        <li>Email: @Model.CustomerMail</li>
+                    </ul>
+                </div>
+            </div>
     </div>
-    <div class="left-side>   
-    <td>@Model.CustomerAdress</td>
-    <td>@Model.CustomerCity</td>
-    <td>@Model.CustomerZipcode</td>
-    <td>@Model.CustomerCountry</td>
-    <td>@Model.CustomerMail</td>
-    </div>
-</tr>
+</div>
+<div>
+    <a class="btn btn-secondary"
+       asp-page="/Customers/Customers">
+        Back
+    </a>
+</div>

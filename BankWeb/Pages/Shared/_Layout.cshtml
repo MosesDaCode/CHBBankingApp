@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/site.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
 
 </head>
 <body id="page-top">
@@ -28,16 +28,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" asp-page="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="#signup">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="/Customers">Customers</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-page="/LoginDashboard">Login</a></li>
-
+                    <li class="nav-item"><a class="nav-link" asp-page="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="#">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Customers/Customers">Customers</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/IndexDashboard">Login</a></li>
                 </ul>
             </div>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
+
                 <partial name="_LoginPartial" />
             </div>
         </div>
@@ -60,4 +60,4 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html> 

@@ -115,7 +115,7 @@ namespace BankWeb.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToPage("/LoginDashboard");
+                    return RedirectToPage("/Dashboard/IndexDashboard");
                 }
                 if (result.RequiresTwoFactor)
                 {

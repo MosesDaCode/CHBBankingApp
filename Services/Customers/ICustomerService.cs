@@ -1,10 +1,9 @@
 ﻿using DataAccessLayer.Models;
 
-namespace BankWeb.Services
+namespace Services.Customers
 {
     public interface ICustomerService
     {
         List<Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox);
     }
 }
-    

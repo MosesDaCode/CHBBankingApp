@@ -1,6 +1,6 @@
 ﻿using DataAccessLayer.Models;
 
-namespace BankWeb.Services
+namespace Services.Customers
 {
     public class CustomerService : ICustomerService
     {

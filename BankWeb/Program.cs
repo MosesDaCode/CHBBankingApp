@@ -1,7 +1,8 @@
-using BankWeb.Services;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Services.Accounts;
+using Services.Customers;
 
 namespace BankWeb
 {
@@ -26,6 +27,7 @@ namespace BankWeb
 
             builder.Services.AddTransient<DataInitializer>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddTransient<IAccountService, AccountService>();
 
             var app = builder.Build();
 
