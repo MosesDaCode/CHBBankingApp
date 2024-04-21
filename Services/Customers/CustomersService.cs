@@ -2,16 +2,16 @@
 
 namespace Services.Customers
 {
-    public class CustomerService : ICustomerService
+    public class CustomersService : ICustomersService
     {
         private readonly BankAppDataContext _dbContext;
 
-        public CustomerService(BankAppDataContext dbContext)
+        public CustomersService(BankAppDataContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public List<Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox)
+        public List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox)
         {
             var query = _dbContext.Customers.AsQueryable();
 

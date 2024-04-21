@@ -10,9 +10,9 @@ namespace BankWeb.Pages.Customers
     [Authorize]
     public class CustomersModel : PageModel
     {
-        private readonly ICustomerService _customerService;
+        private readonly ICustomersService _customerService;
 
-        public CustomersModel(ICustomerService customerService)
+        public CustomersModel(ICustomersService customerService)
         {
             _customerService = customerService;
         }

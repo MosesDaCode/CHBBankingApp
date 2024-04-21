@@ -18,7 +18,7 @@ namespace BankWeb.Pages.Accounts
         public void OnGet(int accountId)
         {
             var account = _accountService.GetAccount(accountId);
-            if (account != null) 
+            if (account != null)
             {
                 WithdrawData = new WithdrawViewModel
                 {

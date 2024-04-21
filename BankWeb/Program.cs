@@ -2,6 +2,7 @@ using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Services.Accounts;
+using Services.Customer;
 using Services.Customers;
 
 namespace BankWeb
@@ -26,8 +27,9 @@ namespace BankWeb
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<DataInitializer>();
-            builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<ICustomersService, CustomersService>();
             builder.Services.AddTransient<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
 
             var app = builder.Build();
 

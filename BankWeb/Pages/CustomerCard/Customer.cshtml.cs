@@ -2,8 +2,8 @@ using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BankWeb.Pages.Customers
-{   
+namespace BankWeb.Pages.CustomerCard
+{
     public class CustomerModel : PageModel
     {
         private readonly BankAppDataContext _dbContext;
