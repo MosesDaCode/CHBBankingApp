@@ -13,41 +13,51 @@
             <div class="form-group">
                 <label asp-for="CustomerVm.FirstName">Firstname</label>
                 <input class="form-control" asp-for="CustomerVm.FirstName">
-                <span asp-validation-for="CustomerVm.FirstName" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.FirstName" class="text-danger"></span>
             </div><div class="form-group">
                 <label asp-for="CustomerVm.LastName">Lastname</label>
                 <input class="form-control" asp-for="CustomerVm.LastName">
-                <span asp-validation-for="CustomerVm.LastName" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.Emailaddress">Email</label>
                 <input class="form-control" asp-for="CustomerVm.Emailaddress">
-                <span asp-validation-for="CustomerVm.Emailaddress" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.Emailaddress" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.StreetAdress">StreetAddress</label>
                 <input class="form-control" asp-for="CustomerVm.StreetAdress">
-                <span asp-validation-for="CustomerVm.StreetAdress" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.StreetAdress" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.PostalCode">Zipcode</label>
                 <input class="form-control" asp-for="CustomerVm.PostalCode">
-                <span asp-validation-for="CustomerVm.PostalCode" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.City">City</label>
                 <input class="form-control" asp-for="CustomerVm.City">
-                <span asp-validation-for="CustomerVm.City" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerVm.Country">Country</label>
+                <input class="form-control" asp-for="CustomerVm.Country">
+                <span asp-validation-for="CustomerVm.Country" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.CountryCode">Country Code</label>
                 <input class="form-control" asp-for="CustomerVm.CountryCode">
-                <span asp-validation-for="CustomerVm.CountryCode" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.CountryCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerVm.Gender">Gender</label>
+                <input class="form-control" asp-for="CustomerVm.Gender">
+                <span asp-validation-for="CustomerVm.Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.Birthday">Birthday</label>
                 <input class="form-control" asp-for="CustomerVm.Birthday">
-                <span asp-validation-for="CustomerVm.Birthday" class="field-validation-error"></span>
+                <span asp-validation-for="CustomerVm.Birthday" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn">Save</button>

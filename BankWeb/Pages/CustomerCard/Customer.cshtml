@@ -4,21 +4,24 @@
     Layout = "_DashboardLayout";
 }
 <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    @Model.CustomerFirstName @Model.CustomerLastName
-                </h5>
-                <div>
-                    <ul>
-                        <li>Adress: @Model.CustomerAdress</li>
-                        <li>City: @Model.CustomerCity</li>
-                        <li>Zipcode: @Model.CustomerZipcode</li>
-                        <li>Country: @Model.CustomerCountry</li>
-                        <li>Email: @Model.CustomerMail</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            @Model.CustomerFirstName @Model.CustomerLastName
+        </h5>
+        <div>
+            <ul>
+                <li>Adress: @Model.CustomerAdress</li>
+                <li>City: @Model.CustomerCity</li>
+                <li>Zipcode: @Model.CustomerZipcode</li>
+                <li>Country: @Model.CustomerCountry</li>
+                <li>Email: @Model.CustomerMail</li>
+            </ul>
+        </div>
     </div>
+    <a class="btn btn-secondary mt-5"
+       asp-page="/CustomerCard/EditCustomer" asp-route-id="@Model.CustomerId">
+        Edit
+    </a>
 </div>
 <div>
     <a class="btn btn-secondary"

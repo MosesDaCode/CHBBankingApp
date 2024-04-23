@@ -7,6 +7,7 @@ namespace BankWeb.Pages.CustomerCard
     public class CustomerModel : PageModel
     {
         private readonly BankAppDataContext _dbContext;
+        public int CustomerId { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public string CustomerAdress { get; set; }
@@ -22,11 +23,10 @@ namespace BankWeb.Pages.CustomerCard
 
         public void OnGet(int id)
         {
-
-
             var customer = _dbContext.Customers
                 .First(c => c.CustomerId == id);
 
+            CustomerId = customer.CustomerId;
             CustomerFirstName = customer.Givenname;
             CustomerLastName = customer.Surname;
             CustomerAdress = customer.Streetaddress;

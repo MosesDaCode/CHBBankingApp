@@ -15,7 +15,7 @@ namespace BankWeb.Pages.CustomerCard
         {
             _customerService = customerService;
         }
-         public CustomerViewModel CustomerVm { get; set; }        
+         public NewCustomerViewModel CustomerVm { get; set; }        
 
         public void OnGet()
         {
@@ -27,6 +27,7 @@ namespace BankWeb.Pages.CustomerCard
             {
                 var cust = new Customer
                 {
+                    CustomerId = CustomerVm.id,
                     Givenname = CustomerVm.FirstName,
                     Surname = CustomerVm.LastName,
                     Streetaddress = CustomerVm.StreetAdress,
@@ -35,10 +36,11 @@ namespace BankWeb.Pages.CustomerCard
                     Country = CustomerVm.Country,
                     CountryCode = CustomerVm.CountryCode,
                     Emailaddress = CustomerVm.Emailaddress,
-                    Birthday = CustomerVm.Birthday
+                    Birthday = CustomerVm.Birthday,
+                    Gender = CustomerVm.Gender
                 };
                 _customerService.SaveNewCustomer(cust);
-                return RedirectToPage("Customer");
+                return RedirectToPage("/Customers/Customers");
             }
             return Page();
         }

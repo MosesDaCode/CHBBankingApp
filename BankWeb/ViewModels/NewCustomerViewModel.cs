@@ -2,17 +2,21 @@
 
 namespace BankWeb.ViewModels
 {
-    public class CustomerViewModel
+    public class NewCustomerViewModel
     {
-        [MaxLength(100)]
+
+        public int id { get; set; }
+        [MinLength(2)]
+        [MaxLength(50)]
         [Required]
         public string FirstName { get; set; }
 
-        [MaxLength(100)]
+        [MinLength(2)]
+        [MaxLength(50)]
         [Required] 
         public string LastName { get; set; }
 
-        [StringLength(100)]
+        [StringLength(50)]
         [Required]
         public string StreetAdress { get; set; }
 
@@ -32,11 +36,16 @@ namespace BankWeb.ViewModels
         public string CountryCode { get; set; }
 
         [DataType(DataType.Date)]
-        [Required]
-        public DateOnly Birthday { get; set; }
+        public DateOnly? Birthday { get; set; }
 
         [StringLength(150)]
         [EmailAddress]
-        public string? Emailaddress { get; set; }
+        [Required]
+        public string Emailaddress { get; set; }
+
+        [MaxLength(6)]
+        [MinLength(4)]
+        [Required]
+        public string Gender { get; set; }  
     }
 }
