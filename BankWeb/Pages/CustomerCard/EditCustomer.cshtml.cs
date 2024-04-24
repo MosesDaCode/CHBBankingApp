@@ -65,5 +65,8 @@ namespace BankWeb.Pages.CustomerCard
 
             return Page();
         }
+
+        
+
     }
 }

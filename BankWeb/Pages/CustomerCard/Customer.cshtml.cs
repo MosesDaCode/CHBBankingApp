@@ -1,12 +1,13 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Customer;
 
 namespace BankWeb.Pages.CustomerCard
 {
     public class CustomerModel : PageModel
     {
-        private readonly BankAppDataContext _dbContext;
+        private readonly ICustomerService _customerService;
         public int CustomerId { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
@@ -16,15 +17,14 @@ namespace BankWeb.Pages.CustomerCard
         public string CustomerCountry { get; set; }
         public string CustomerMail { get; set; }
 
-        public CustomerModel(BankAppDataContext dbContext)
+        public CustomerModel(ICustomerService customerService)
         {
-            _dbContext = dbContext;
+            _customerService = customerService;
         }
 
         public void OnGet(int id)
         {
-            var customer = _dbContext.Customers
-                .First(c => c.CustomerId == id);
+            var customer = _customerService.GetCustomer(id);
 
             CustomerId = customer.CustomerId;
             CustomerFirstName = customer.Givenname;
@@ -34,23 +34,14 @@ namespace BankWeb.Pages.CustomerCard
             CustomerZipcode = customer.Zipcode;
             CustomerCountry = customer.Country;
             CustomerMail = customer.Emailaddress;
-
-
-
-            //CustomerFirstName = _dbContext.Customers
-            //    .First(f => f.CustomerId == id).Givenname;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(l => l.CustomerId == id).Surname;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(a => a.CustomerId == id).Streetaddress;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(c => c.CustomerId == id).City;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(z => z.CustomerId == id).Zipcode;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(c => c.CustomerId == id).Country;
-            //CustomerLastName = _dbContext.Customers
-            //    .First(m => m.CustomerId == id).Emailaddress;
         }
+
+        public IActionResult OnPostSoftDelete(int id)
+        {
+            _customerService.SoftDelete(id);
+            return RedirectToPage("/Customers/Customers");
+        }
+        //Lägg till!!!!
+
     }
 }

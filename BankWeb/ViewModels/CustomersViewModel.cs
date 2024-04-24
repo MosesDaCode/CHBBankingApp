@@ -7,5 +7,6 @@
         public string Country { get; set; }
         public string City { get; set; }
         public int CurrentPage {  get; set; }
+        public bool IsActive { get; set; }
     }
 }

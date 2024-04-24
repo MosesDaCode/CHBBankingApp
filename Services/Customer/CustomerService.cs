@@ -33,5 +33,16 @@ namespace Services.Customer
         {
             return _DbContext.Customers.First(c => c.CustomerId == customerId);
         }
+
+        public void SoftDelete(int customerId) 
+        {
+            var customer = _DbContext.Customers.First(c => c.CustomerId == customerId);
+
+            if (customer != null)
+            {
+                customer.IsActive = false;
+                _DbContext.SaveChanges();
+            }
+        }
     }
 }

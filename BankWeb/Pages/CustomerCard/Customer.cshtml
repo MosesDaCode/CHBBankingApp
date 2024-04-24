@@ -18,10 +18,16 @@
             </ul>
         </div>
     </div>
-    <a class="btn btn-secondary mt-5"
+    
+    <a class="btn btn-secondary"
        asp-page="/CustomerCard/EditCustomer" asp-route-id="@Model.CustomerId">
         Edit
     </a>
+    <form asp-page-handler="SoftDelete" asp-route-id="@Model.CustomerId">
+        <button type"submit" class="btn btn-danger" >
+            Delete
+        </button>
+    </form>
 </div>
 <div>
     <a class="btn btn-secondary"

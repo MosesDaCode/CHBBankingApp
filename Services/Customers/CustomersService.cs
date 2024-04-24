@@ -11,9 +11,14 @@ namespace Services.Customers
             _dbContext = dbContext;
         }
 
-        public List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox)
+        public List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox,bool isActive = true)
         {
-            var query = _dbContext.Customers.AsQueryable();
+            var query = _dbContext.Customers
+                .Where(c => c.IsActive == isActive)
+                .AsQueryable();
+
+
+
 
             if (!string.IsNullOrEmpty(searchBox))
             {
@@ -26,6 +31,7 @@ namespace Services.Customers
             {
                 firstItemIndex = 0;
             }
+
             query = query.Skip(firstItemIndex);
             query = query.Take(10);
 
