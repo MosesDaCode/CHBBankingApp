@@ -13,6 +13,7 @@ namespace Services.Customer
         int SaveNewCustomer(DataAccessLayer.Models.Customer customer);
 
         void Update(DataAccessLayer.Models.Customer customer);
+        void SoftDelete(int customerId);
 
         DataAccessLayer.Models.Customer GetCustomer(int customerId);
     }

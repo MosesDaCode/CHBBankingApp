@@ -25,7 +25,7 @@ namespace BankWeb.Pages.CustomerCard
         {
             if (ModelState.IsValid)
             {
-                var cust = new Customer
+                var cust = new DataAccessLayer.Models.Customer
                 {
                     CustomerId = CustomerVm.id,
                     Givenname = CustomerVm.FirstName,

@@ -3,6 +3,6 @@ namespace Services.Customers
 {
     public interface ICustomersService
     {
-        List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox);
+        List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox, bool IsActive = true);
     }
 }
