@@ -31,8 +31,8 @@ public partial class Customer
 
     public string? Telephonenumber { get; set; }
 
+    public bool IsActive { get; set; } = true;
     public string? Emailaddress { get; set; }
 
-    public bool IsActive { get; set; } = true;
     public virtual ICollection<Disposition> Dispositions { get; set; } = new List<Disposition>();
 }

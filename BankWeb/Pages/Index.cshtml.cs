@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
-
 namespace BankWeb.Pages
 {
     public class IndexModel : PageModel
@@ -25,7 +24,7 @@ namespace BankWeb.Pages
         {
             TotalCustomers = _dbContext.Customers.Count();
             TotalAccounts = _dbContext.Accounts.Count();
-            //TotalSum = _dbContext.Transactions.Sum(t => t.Balance);
+            TotalSum = _dbContext.Transactions.Sum(t => t.Balance);
 
 
             if (_signInManager.IsSignedIn(User))

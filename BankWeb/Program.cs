@@ -2,8 +2,10 @@ using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Services.Accounts;
+using Services.Countries;
 using Services.Customer;
 using Services.Customers;
+using Services.Gender;
 
 namespace BankWeb
 {
@@ -24,13 +26,17 @@ namespace BankWeb
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
 
-            builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<DataInitializer>();
             builder.Services.AddScoped<ICustomersService, CustomersService>();
             builder.Services.AddTransient<IAccountService, AccountService>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<ICountriesService, CountriesService>();
+            builder.Services.AddScoped<IGenderService, GenderService>();
 
+            builder.Services.AddRazorPages();
+
+            
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

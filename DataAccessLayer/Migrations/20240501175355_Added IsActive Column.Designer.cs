@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(BankAppDataContext))]
-    [Migration("20240423104337_Added boolean IsActive on Customer entity with true as default value")]
-    partial class AddedbooleanIsActiveonCustomerentitywithtrueasdefaultvalue
+    [Migration("20240501175355_Added IsActive Column")]
+    partial class AddedIsActiveColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

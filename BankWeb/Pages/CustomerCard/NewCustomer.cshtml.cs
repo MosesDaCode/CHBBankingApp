@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using DataAccessLayer.Models;
 using Services.Customer;
 using BankWeb.ViewModels;
+using Services.Countries;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Services.Gender;
 
 namespace BankWeb.Pages.CustomerCard
 {
@@ -10,15 +13,34 @@ namespace BankWeb.Pages.CustomerCard
     public class NewCustomerModel : PageModel
     {
         private readonly ICustomerService _customerService;
+        private readonly ICountriesService _countriesService;
+        private readonly IGenderService _genderService;
 
-        public NewCustomerModel(ICustomerService customerService)
+        public NewCustomerModel(ICustomerService customerService, ICountriesService countriesService, IGenderService genderService)
         {
             _customerService = customerService;
+            _countriesService = countriesService;
+            _genderService = genderService;
         }
-         public NewCustomerViewModel CustomerVm { get; set; }        
+        public NewCustomerViewModel CustomerVm { get; set; }  
+        public List<SelectListItem> Countries { get; set; }
+        public List<SelectListItem> TwoGenders { get; set; }
 
         public void OnGet()
         {
+            Countries = _countriesService.GetAllCountries()
+                .ConvertAll(c => new SelectListItem
+                {
+                    Text = c,
+                    Value = c
+                });
+
+            TwoGenders = _genderService.GetBothGenders()
+                .ConvertAll(g => new SelectListItem
+                {
+                    Text = g,
+                    Value = g
+                });
         }
 
         public IActionResult OnPost()
