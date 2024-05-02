@@ -35,17 +35,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.City">City</label>
-                <input class="form-control" asp-for="CustomerVm.City">
+                <input class="form-control" asp-for="CustomerVm.City" >
                 <span asp-validation-for="CustomerVm.City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.Country">Country</label>
-                <input class="form-control" asp-for="CustomerVm.Country">
+                <select class="form-control" asp-for="CustomerVm.Country" asp-items="Model.Countries"></select>
                 <span asp-validation-for="CustomerVm.Country" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerVm.CountryCode">Country Code</label>
-                <input class="form-control" asp-for="CustomerVm.CountryCode">
+                <input class="form-control" asp-for="CustomerVm.CountryCode" readonly>
                 <span asp-validation-for="CustomerVm.CountryCode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -53,8 +53,42 @@
                 <input class="form-control" asp-for="CustomerVm.Birthday">
                 <span asp-validation-for="CustomerVm.Birthday" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="CustomerVm.Gender">Gender</label>
+                <select class="form-control" asp-for="CustomerVm.Gender" asp-items="Model.TwoGenders">
+                </select>
 
-            <button type="submit" class="btn">Update</button>
+                <span asp-validation-for="CustomerVm.Gender" class="text-danger"></span>
+            </div>
+            <div style="margin-top: 15px">
+            <a class="btn btn-secondary"
+               asp-page="/CustomerCard/Customer" asp-route-id="@Model.CustomerVm.Id">
+                Back
+            </a>
+            <button type="submit" class="btn btn-success" >Update</button>
+            </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const countrySelect = document.querySelector('#CustomerVm_Country');
+            const countryCodeInput = document.querySelector('#CustomerVm_CountryCode');
+
+            countrySelect.addEventListener('change', function () {
+                // Exempel på hur du kan kartlägga länder till koder
+                const countryToCode = {
+                    "Sweden": "SE",
+                    "Norway": "NO",
+                    "Denmark": "DK",
+                    "Finland": "FI"
+                };
+
+                // Uppdatera landskoden baserat på valt land
+                countryCodeInput.value = countryToCode[countrySelect.options[countrySelect.selectedIndex].text] || '';
+            });
+        });
+    </script>
+}

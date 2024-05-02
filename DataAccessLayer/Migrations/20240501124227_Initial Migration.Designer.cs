@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(BankAppDataContext))]
-    [Migration("20240402101051_Initial Migration")]
+    [Migration("20240501124227_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -140,6 +140,9 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("NationalId")
                         .HasMaxLength(20)

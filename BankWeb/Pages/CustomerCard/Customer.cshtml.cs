@@ -41,7 +41,6 @@ namespace BankWeb.Pages.CustomerCard
             _customerService.SoftDelete(id);
             return RedirectToPage("/Customers/Customers");
         }
-        //Lägg till!!!!
 
     }
 }

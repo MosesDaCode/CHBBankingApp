@@ -11,7 +11,7 @@ namespace Services.Customers
             _dbContext = dbContext;
         }
 
-        public List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox,bool isActive = true)
+        public List<DataAccessLayer.Models.Customer> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchBox, bool isActive = true)
         {
             var query = _dbContext.Customers
                 .Where(c => c.IsActive == isActive)

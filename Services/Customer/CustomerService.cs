@@ -15,7 +15,7 @@ namespace Services.Customer
         {
             _DbContext = dbContext;
         }
-        public IEnumerable<DataAccessLayer.Models.Customer> GetCustomers() 
+        public IEnumerable<DataAccessLayer.Models.Customer> GetCustomers()
         {
             return _DbContext.Customers;
         }
@@ -34,7 +34,7 @@ namespace Services.Customer
             return _DbContext.Customers.First(c => c.CustomerId == customerId);
         }
 
-        public void SoftDelete(int customerId) 
+        public void SoftDelete(int customerId)
         {
             var customer = _DbContext.Customers.First(c => c.CustomerId == customerId);
 
