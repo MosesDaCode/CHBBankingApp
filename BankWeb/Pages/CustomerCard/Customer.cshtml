@@ -5,26 +5,62 @@
 }
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">
+        <h1 class="card-title">
             @Model.CustomerFirstName @Model.CustomerLastName
-        </h5>
+        </h1>
+        <h2>Total Balance: $@Model.TotalBalance</h2>
+        <h3>Customer Info</h3>
         <div>
+            <table>
+                <tr>
+                    <td>Adress: </td>
+                    <td>@Model.CustomerAdress</td>
+                </tr>
+                <tr>
+                    <td>City: </td>
+                    <td>@Model.CustomerCity</td>
+                </tr>
+                <tr>
+                    <td>Zipcode: </td>
+                    <td>@Model.CustomerZipcode</td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td>@Model.CustomerCountry</td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td>@Model.CustomerMail</td>
+                </tr>
+            </table>
+        </div>
+        @* <div>
+        <ul>
+        <li>Adress: @Model.CustomerAdress</li>
+        <li>City: @Model.CustomerCity</li>
+        <li>Zipcode: @Model.CustomerZipcode</li>
+        <li>Country: @Model.CustomerCountry</li>
+        <li>Email: @Model.CustomerMail</li>
+        </ul>
+        </div> *@
+
+        <div>
+            <h3>Accounts</h3>
             <ul>
-                <li>Adress: @Model.CustomerAdress</li>
-                <li>City: @Model.CustomerCity</li>
-                <li>Zipcode: @Model.CustomerZipcode</li>
-                <li>Country: @Model.CustomerCountry</li>
-                <li>Email: @Model.CustomerMail</li>
+                @foreach (var account in Model.CustomerAccounts)
+                {
+                    <li>Account number: @account.AccountId,Balance: $@account.Balance</li>
+                }
             </ul>
         </div>
     </div>
-    
+
     <a class="btn btn-secondary"
        asp-page="/CustomerCard/EditCustomer" asp-route-id="@Model.CustomerId">
         Edit
     </a>
     <form asp-page-handler="SoftDelete" asp-route-id="@Model.CustomerId">
-        <button type"submit" class="btn btn-danger" >
+        <button type"submit" class="btn btn-danger">
             Delete
         </button>
     </form>

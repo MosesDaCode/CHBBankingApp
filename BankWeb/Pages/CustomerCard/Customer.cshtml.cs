@@ -16,13 +16,14 @@ namespace BankWeb.Pages.CustomerCard
         public string CustomerZipcode { get; set; }
         public string CustomerCountry { get; set; }
         public string CustomerMail { get; set; }
-
+        public decimal TotalBalance { get;set; }
+        public List<Account> CustomerAccounts { get; set; }
         public CustomerModel(ICustomerService customerService)
         {
             _customerService = customerService;
         }
 
-        public void OnGet(int id)
+        public void OnGet(int id, int accountId)
         {
             var customer = _customerService.GetCustomer(id);
 
@@ -34,6 +35,10 @@ namespace BankWeb.Pages.CustomerCard
             CustomerZipcode = customer.Zipcode;
             CustomerCountry = customer.Country;
             CustomerMail = customer.Emailaddress;
+
+            CustomerAccounts = _customerService.GetCustomerAccounts(customer).ToList();
+            
+            TotalBalance = CustomerAccounts.Sum(account => account.Balance);
         }
 
         public IActionResult OnPostSoftDelete(int id)
