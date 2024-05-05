@@ -34,6 +34,7 @@ namespace BankWeb
             builder.Services.AddScoped<ICountriesService, CountriesService>();
             builder.Services.AddScoped<IGenderService, GenderService>();
 
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddRazorPages();
 
             

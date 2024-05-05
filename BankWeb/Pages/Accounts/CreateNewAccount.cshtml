@@ -1,0 +1,26 @@
+﻿@page
+@model BankWeb.Pages.Accounts.CreateNewAccountModel
+@{
+    Layout = "_DashboardLayout";
+}
+
+<h1>Create a new Account</h1>
+
+<form>
+    <div class="form-group">
+        <label asp-for="newAccount.Frequency">Frequency</label>
+        <select class="form-control" asp-for="newAccount.Frequency" asp-items="Model.Frequencies">
+            <option>Choose</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="balance">Balance: </label>
+        <input type="text" class="form-control" id="balance" name="Balance" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" asp-route-id="@Model.CustomerId">Create Account</button>
+    <a class="btn btn-secondary"
+       asp-page="/CustomerCard/Customer" asp-route-id="@Model.CustomerId">
+        Back
+    </a>
+</form>
