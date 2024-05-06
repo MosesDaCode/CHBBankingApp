@@ -4,8 +4,8 @@
     Layout = "_DashboardLayout";
 }
 
-<h1>All Customers</h1>
-<h3>Page @Model.CurrentPage</h3>
+<h3>All Customers</h3>
+<h5>Page @Model.CurrentPage</h5>
 <form method="get">
     <input asp-for="@Model.SearchBox" />
     <input type="hidden" asp-for="@Model.CustomerId" />
@@ -41,6 +41,24 @@
                 </a>
             </th>
             <th scope="col">
+                NationalId
+                <a asp-page="/Customers/Customers"
+                   asp-route-searchBox="@Model.SearchBox"
+                   asp-route-sortColumn="NationalId"
+                   asp-route-sortOrder="asc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-up"></i>
+
+                </a>
+                <a asp-page="/Customers/Customers"
+                   asp-route-searchBox="@Model.SearchBox"
+                   asp-route-sortColumn="NationalId"
+                   asp-route-sortOrder="desc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+            </th>
+            <th scope="col">
                 City
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
@@ -59,10 +77,10 @@
                 </a>
             </th>
             <th scope="col">
-                Country
+                StreetAdress
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
-                   asp-route-sortColumn="Country"
+                   asp-route-sortColumn="StreetAddress"
                    asp-route-sortOrder="asc"
                    style="text-decoration:none">
                     <i class="fa-solid fa-angle-up"></i>
@@ -70,7 +88,7 @@
                 </a>
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
-                   asp-route-sortColumn="Country"
+                   asp-route-sortColumn="StreetAddress"
                    asp-route-sortOrder="desc"
                    style="text-decoration:none">
                     <i class="fa-solid fa-angle-down"></i>
@@ -92,8 +110,10 @@
             <tr>
                 <td>@cust.Id</td>
                 <td>@cust.Name</td>
+                <td>@cust.NationalId</td>
                 <td>@cust.City</td>
-                <td>@cust.Country</td>
+                <td>@cust.StreetAddress</td>
+                <td></td>
                 <td><a asp-page="/CustomerCard/Customer" asp-route-id="@cust.Id" class="btn btn-primary">View Details</a></td>
             </tr>
         }
@@ -111,6 +131,9 @@
                     </a>
                 }
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td>
