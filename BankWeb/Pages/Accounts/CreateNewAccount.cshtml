@@ -6,7 +6,10 @@
 
 <h1>Create a new Account</h1>
 
-<form>
+<form method="post" asp-page-handler="OnPost">
+    <div>
+        <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
+    </div>
     <div class="form-group">
         <label asp-for="newAccount.Frequency">Frequency</label>
         <select class="form-control" asp-for="newAccount.Frequency" asp-items="Model.Frequencies">
@@ -15,10 +18,10 @@
     </div>
     <div class="form-group">
         <label for="balance">Balance: </label>
-        <input type="text" class="form-control" id="balance" name="Balance" />
+        <input type="text" class="form-control" id="balance" name="newAccount.Balance" asp-for="newAccount.Balance" />
     </div>
 
-    <button type="submit" class="btn btn-primary" asp-route-id="@Model.CustomerId">Create Account</button>
+    <button type="submit" name="submit" class="btn btn-primary" asp-route-id="@Model.CustomerId">Create Account</button>
     <a class="btn btn-secondary"
        asp-page="/CustomerCard/Customer" asp-route-id="@Model.CustomerId">
         Back

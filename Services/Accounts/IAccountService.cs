@@ -13,6 +13,6 @@ namespace Services.Accounts
         List<string> GetFrequencies();
         void Update(Account account);
         Account GetAccount(int id);
-        Account CreateAccount(string frequency, decimal balance);
+        Account CreateAccount(Account account);
     }
 }

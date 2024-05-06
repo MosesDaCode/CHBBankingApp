@@ -1,3 +1,4 @@
+using BankWeb.ViewModels;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,22 +8,28 @@ using Services.Customer;
 
 namespace BankWeb.Pages.Accounts
 {
+    [BindProperties]
+
     public class CreateNewAccountModel : PageModel
     {
         private readonly IAccountService _accountService;
         private readonly ICustomerService _customerService;
         private readonly IHttpContextAccessor _contextAccessor;
+        private readonly BankAppDataContext _bankAppDataContext;
 
 
-        public CreateNewAccountModel(IAccountService accountService, ICustomerService customerService, IHttpContextAccessor contextAccessor)
+        public CreateNewAccountModel(IAccountService accountService,
+            ICustomerService customerService, 
+            IHttpContextAccessor contextAccessor, 
+            BankAppDataContext bankAppDataContext)
         {
             _accountService = accountService;
             _customerService = customerService;
             _contextAccessor = contextAccessor;
+            _bankAppDataContext = bankAppDataContext;
         }
 
-        [BindProperty]
-        public Account newAccount { get; set; }
+        public AccountViewModel newAccount { get; set; }
         public int CustomerId {  get; set; }
         public List<SelectListItem> Frequencies { get; set; }
 
@@ -40,17 +47,36 @@ namespace BankWeb.Pages.Accounts
 
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int customerId)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+                var newAcc = new Account
+                {
+                    Balance = newAccount.Balance,
+                    Frequency = newAccount.Frequency,
+                    Created = DateOnly.FromDateTime(DateTime.Now)
+                };
+
+                var createdAcc = _accountService.CreateAccount(newAcc);
+
+                var newdisposition = new Disposition
+                {
+                    CustomerId = CustomerId,
+                    AccountId = createdAcc.AccountId,
+                    Type = "Owner"
+                };
+
+                _bankAppDataContext.Dispositions.Add(newdisposition);
+                _bankAppDataContext.SaveChanges();
+                
+
+                string returnUrl = Request.Headers["Referer"].ToString();
+                return Redirect(returnUrl);
             }
-            _accountService.CreateAccount(newAccount.Frequency, newAccount.Balance);
+           
+            return Page();
 
-            string returnUrl = _contextAccessor.HttpContext.Request.Headers["Referer"].ToString();
-
-            return Redirect(returnUrl);
         }
     }
 }

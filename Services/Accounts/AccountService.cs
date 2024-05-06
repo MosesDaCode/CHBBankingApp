@@ -16,6 +16,12 @@ namespace Services.Accounts
         {
             _bankAppDataContext = bankAppDataContext;
         }
+        public Account CreateAccount(Account account)
+        {
+            _bankAppDataContext.Accounts.Add(account);
+            _bankAppDataContext.SaveChanges();
+            return account;
+        }
         public List<Account> GetAccounts()
         {
             return _bankAppDataContext.Accounts.ToList();
@@ -28,19 +34,7 @@ namespace Services.Accounts
         {
             _bankAppDataContext.SaveChanges();
         }
-        public Account CreateAccount(string frequency, decimal balance)
-        {
-            var newAccount = new Account
-            {
-                Frequency = frequency,
-                Balance = balance
-            };
-
-            _bankAppDataContext.Accounts.Add(newAccount);
-            _bankAppDataContext.SaveChangesAsync();
-
-            return newAccount;
-        }
+        
         public List<string> GetFrequencies()
         {
             var frequencies = _bankAppDataContext.Accounts
