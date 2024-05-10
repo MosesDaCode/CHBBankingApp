@@ -4,20 +4,25 @@
     Layout = "_DashboardLayout";
 }
 
-<h3>All Customers</h3>
-<h5>Page @Model.CurrentPage</h5>
-<form method="get">
-    <input asp-for="@Model.SearchBox" />
-    <input type="hidden" asp-for="@Model.CustomerId" />
-    <input type="submit" value="Search" />
-</form>
+<div class="row">
+    <!-- Titel och Pagination på vänster sida -->
+    <div class="col-md-8">
+        <h3>All Customers</h3>
+        <h5>Page @Model.CurrentPage</h5>
+    </div>
 
-    <a class="btn btn-secondary"
-       asp-page="/Dashboard/IndexDashboard">
-        Back
-    </a>
-<a class="btn btn-success" asp-page="/CustomerCard/NewCustomer">Add customer</a>
-
+    <!-- Sökrutan och knapparna på höger sida -->
+    <div class="col-md-4 text-right">
+        <form method="get" class="form-inline justify-content-end">
+            <input class="form mr-2" type="search" placeholder="Search" asp-for="@Model.SearchBox">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <div class="mt-2">
+            <a class="btn btn-secondary" asp-page="/Dashboard/IndexDashboard">Back</a>
+            <a class="btn btn-success" asp-page="/CustomerCard/NewCustomer">Add Customer</a>
+        </div>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>

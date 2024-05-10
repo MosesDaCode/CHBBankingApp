@@ -61,11 +61,12 @@ namespace BankWeb.Pages.CustomerCard
             return RedirectToPage("/Customers/Customers");
         }
 
-        //public IActionResult OnPostDeleteAccount(int id)
-        //{
-        //    _accountService.
-        //    return;
-        //}
+        public IActionResult OnPostDeleteAccount(int accountId, int id)
+        {
+            _accountService.Delete(accountId);
+
+            return RedirectToPage("/CustomerCard/Customer", new { id = id });
+        }
 
     }
 }

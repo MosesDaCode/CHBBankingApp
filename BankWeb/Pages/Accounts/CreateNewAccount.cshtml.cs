@@ -51,6 +51,7 @@ namespace BankWeb.Pages.Accounts
         {
             if (ModelState.IsValid)
             {
+
                 var newAcc = new Account
                 {
                     Balance = newAccount.Balance,
@@ -67,6 +68,7 @@ namespace BankWeb.Pages.Accounts
                     Type = "Owner"
                 };
 
+                _bankAppDataContext.Accounts.Update(newAcc);
                 _bankAppDataContext.Dispositions.Add(newdisposition);
                 _bankAppDataContext.SaveChanges();
                 

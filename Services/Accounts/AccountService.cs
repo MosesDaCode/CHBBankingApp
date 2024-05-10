@@ -43,6 +43,20 @@ namespace Services.Accounts
                 .ToList();
             return frequencies;
         }
-        
+        public void Delete(int accountId)
+        {
+            var accountToDelete = _bankAppDataContext.Accounts.FirstOrDefault(a => a.AccountId == accountId);
+            if (accountToDelete != null)
+            {
+                var dispositionAccToDelete = _bankAppDataContext.Dispositions.FirstOrDefault(d => d.AccountId == accountId);
+                if (dispositionAccToDelete != null)
+                {
+                    _bankAppDataContext.Remove(dispositionAccToDelete);
+                }
+
+                _bankAppDataContext.Remove(accountToDelete);
+                _bankAppDataContext.SaveChanges();
+            }
+        }
     }
 }

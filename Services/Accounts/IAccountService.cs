@@ -12,7 +12,9 @@ namespace Services.Accounts
         List<Account> GetAccounts();
         List<string> GetFrequencies();
         void Update(Account account);
+        void Delete(int account);
         Account GetAccount(int id);
         Account CreateAccount(Account account);
+
     }
 }
