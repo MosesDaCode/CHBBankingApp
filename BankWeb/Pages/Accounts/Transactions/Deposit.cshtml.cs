@@ -66,7 +66,7 @@ namespace BankWeb.Pages.Accounts.Transactions
                     Bank = "CHB"
                 };
 
-                _transactionsService.AddTransaction(transaction);
+                _transactionsService.DepositMoney(transaction);
                 return RedirectToPage("/Accounts/Transactions/Transaction", new {accountId = AccountId, customerId = CustomerId});
             }
             return Page();

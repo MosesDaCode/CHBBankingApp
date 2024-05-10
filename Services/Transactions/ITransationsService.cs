@@ -11,6 +11,7 @@ namespace Services.Transactions
     {
         List<Transaction> GetAllTransactionsById(int accountId, int skip, int take);
 
-        void AddTransaction(Transaction transaction);
+        void DepositMoney(Transaction deposit);
+        void WithdrawMoney(Transaction withdraw);
     }
 }

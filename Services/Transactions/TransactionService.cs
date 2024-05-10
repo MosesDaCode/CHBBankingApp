@@ -36,13 +36,24 @@ namespace Services.Transactions
             //return transactions;
         }
 
-        public void AddTransaction(DataAccessLayer.Models.Transaction transaction)
+        public void DepositMoney(DataAccessLayer.Models.Transaction deposit)
         {
-            if (transaction == null)
-                throw new ArgumentNullException(nameof(transaction));
+            if (deposit == null)
+                throw new ArgumentNullException(nameof(deposit));
 
-            _bankAppDataContext.Transactions.Add(transaction);
+            _bankAppDataContext.Transactions.Add(deposit);
             _bankAppDataContext.SaveChanges(); 
+        }
+
+        public void WithdrawMoney(DataAccessLayer.Models.Transaction withdraw)
+        {
+            if (withdraw == null)
+                throw new ArgumentNullException(nameof(withdraw));
+
+            withdraw.Amount = -Math.Abs(withdraw.Amount);
+
+            _bankAppDataContext.Transactions.Add(withdraw);
+            _bankAppDataContext.SaveChanges();
         }
     }
 }
