@@ -6,6 +6,7 @@ using Services.Countries;
 using Services.Customer;
 using Services.Customers;
 using Services.Gender;
+using Services.Transactions;
 
 namespace BankWeb
 {
@@ -33,6 +34,7 @@ namespace BankWeb
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<ICountriesService, CountriesService>();
             builder.Services.AddScoped<IGenderService, GenderService>();
+            builder.Services.AddScoped<ITransationsService, TransactionService>();
 
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddRazorPages();

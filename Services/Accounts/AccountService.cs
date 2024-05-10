@@ -43,5 +43,6 @@ namespace Services.Accounts
                 .ToList();
             return frequencies;
         }
+        
     }
 }

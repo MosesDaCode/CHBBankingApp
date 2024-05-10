@@ -5,71 +5,126 @@
 }
 <div class="card">
     <div class="card-body">
-        <h1 class="card-title">
-            @Model.CustomerFirstName @Model.CustomerLastName
-        </h1>
-        <h3>Customer Info</h3>
-        <div>
-            <table>
-                <tr>
-                    <td>Adress: </td>
-                    <td>@Model.CustomerAdress</td>
-                </tr>
-                <tr>
-                    <td>City: </td>
-                    <td>@Model.CustomerCity</td>
-                </tr>
-                <tr>
-                    <td>Zipcode: </td>
-                    <td>@Model.CustomerZipcode</td>
-                </tr>
-                <tr>
-                    <td>Country: </td>
-                    <td>@Model.CustomerCountry</td>
-                </tr>
-                <tr>
-                    <td>Email: </td>
-                    <td>@Model.CustomerMail</td>
-                </tr>
-            </table>
-        </div>
-        @* <div>
-        <ul>
-        <li>Adress: @Model.CustomerAdress</li>
-        <li>City: @Model.CustomerCity</li>
-        <li>Zipcode: @Model.CustomerZipcode</li>
-        <li>Country: @Model.CustomerCountry</li>
-        <li>Email: @Model.CustomerMail</li>
-        </ul>
-        </div> *@
+        <div class="row">
+            <div class="col">
+                <h1 class="card-title">
+                    @Model.CustomerFirstName @Model.CustomerLastName
+                </h1>
+                <h3>Customer Info</h3>
+                <div>
+                    <table>
 
-        <div>
-            <h2>Accounts</h2>
-            <h4>Total Balance: $@Model.TotalBalance</h4>
+                        <tr>
+                            <th style="font-size: 20px">Nat Id:  </th>
+                            <td>@Model.NationalId</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px">Adress: </th>
+                            <td>@Model.CustomerAdress</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px">City: </th>
+                            <td>@Model.CustomerCity</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px">Zipcode: </th>
+                            <td>@Model.CustomerZipcode</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px">Country: </th>
+                            <td>@Model.CustomerCountry</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px">Email: </th>
+                            <td>@Model.CustomerMail</td>
+                        </tr>
 
-            <a class="btn btn-success" asp-page="/Accounts/CreateNewAccount" asp-route-id="@Model.CustomerId">Create account</a>
-            <ul>
-                @foreach (var account in Model.CustomerAccounts)
+                        <tr>
+                            <td>
+                                <a class="btn btn-primary" style="width:275px; margin-right: -150px"
+                                   asp-page="/CustomerCard/EditCustomer" asp-route-id="@Model.CustomerId">
+                                    Edit Customer
+                                </a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <form asp-page-handler="SoftDelete" asp-route-id="@Model.CustomerId">
+                                    <button type"submit" class="btn btn-primary" style=";margin-left:-50px; border-width:4px; border-color:#e60000; width: 275px">
+                                        Deactivate Customer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                @if(Model.Gender == "male")
                 {
-                    <li>Account number: @account.AccountId,Balance: $@account.Balance</li>
+                    <img src="/assets/img/man bigger.png" alt="Customer Pic" style="width:250px; height:auto; margin-left:200px; margin-top: 50px;" />
                 }
-            </ul>
+                else if (Model.Gender == "female")
+                {
+                    <img src="/assets/img/woman bigger.png" alt="Customer Pic" style="width:250px; height:auto; margin-left:200px " />
+                }
+            </div>
+
         </div>
     </div>
-
-    <a class="btn btn-secondary"
-       asp-page="/CustomerCard/EditCustomer" asp-route-id="@Model.CustomerId">
-        Edit
-    </a>
-    <form asp-page-handler="SoftDelete" asp-route-id="@Model.CustomerId">
-        <button type"submit" class="btn btn-danger">
-            Delete
-        </button>
-    </form>
 </div>
-<div>
+<div class="card mt-4">
+    <div class="card-body">
+        <div class="col">
+            <h2>Accounts</h2>
+            <h4>Total Balance: $@Model.TotalBalance</h4>
+            <table>
+                <thead>
+                    <tr style="font-size:20px">
+                        <th class="px-3">
+                            Account
+                        </th>
+                        <th class="px-3">
+                            Created
+                        </th>
+                        <th class="px-3">
+                            Balance
+                        </th>
+                        <th class="px-3"></th>
+                        <th class="px-3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var account in Model.CustomerAccounts)
+                    {
+                        <tr style="font-size:16px">
+                            <td class="px-4 align-middle text-center">@account.AccountId</td>
+                            <td class="px-4 align-middle text-center">@account.Created</td>
+                            <td class="px-4 align-middle text-center">$@account.Balance</td>
+                            <td class="px-3">
+                                <a class="btn btn-primary w-100" asp-page="/Accounts/Transactions/Transaction" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
+                                    Transactions
+                                </a>
+                            </td>
+                            <td class="px-3">
+                                <a class="btn btn-primary w-100"
+                                   style="border-width: 4px; border-color: #e60000">
+                                    Delete account
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a class="btn btn-primary" asp-page="/Accounts/CreateNewAccount" asp-route-id="@Model.CustomerId">Create account</a>
+        </div>
+    </div>
+</div>
+
+<div class="justify-content-between" style="margin-top:10px">
     <a class="btn btn-secondary"
        asp-page="/Customers/Customers">
         Back
     </a>
+
+
 </div>
