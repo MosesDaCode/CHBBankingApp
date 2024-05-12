@@ -68,17 +68,17 @@ else
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var pageIndex = 0; // Spåra vilken sida vi är på
-            var accountId = '@Model.AccountId'; // Hämtar accountId från servern
+            var pageIndex = 0; 
+            var accountId = '@Model.AccountId'; 
 
             $('#show-more').click(function () {
                 console.log('hejsant');
-                pageIndex++; // Öka pageIndex vid varje klick
+                pageIndex++; 
                 $.ajax({
                     url: '/Accounts/Transactions/Transaction?handler=ShowMore',
                     data: { accountId: accountId, pageIndex: pageIndex },
                     type: 'GET',
-                    dataType: 'json',  // Specificerar förväntat datatyp
+                    dataType: 'json',  
                     success: function (transactions) {
                         if (transactions.length > 0) {
                             transactions.forEach(function (transaction) {
@@ -92,7 +92,7 @@ else
                                 );
                             });
                         } else {
-                            $('#show-more').hide(); // Göm knappen om inga fler transaktioner finns
+                            $('#show-more').hide();
                         }
                     },
                     error: function (xhr, status, error) {

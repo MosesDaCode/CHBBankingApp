@@ -156,9 +156,8 @@
                     messageElement.style.opacity = 0;
                     setTimeout(function () {
                         messageElement.style.display = 'none';
-                    }, 600); // Extra timeout för att säkerställa att opacitetsövergången är klar
-                }
-            }, 3000); // 3000 ms = 3 sekunder, startar övergången
+                    }, 600);                 }
+            }, 3000); 
         };
     </script>
 
@@ -174,14 +173,12 @@
 
     <script>
         $(document).ready(function () {
-            // Visa modalen
+
             $('#yourButtonId').click(function () {
                 $('#confirmationModal').modal('show');
             });
 
-            // Funktion att köra när användaren bekräftar handlingen
             function confirmAction() {
-                // Logik här för att hantera bekräftelsen
                 $('#confirmationModal').modal('hide');
             }
         });

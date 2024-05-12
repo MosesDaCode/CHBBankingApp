@@ -26,14 +26,6 @@ namespace Services.Transactions
                 .Skip(skip)
                 .Take(take)
                 .ToList();
-            
-            //List<DataAccessLayer.Models.Transaction> transactions = _bankAppDataContext.Transactions
-            //    .Where(t => t.AccountId == accountId)
-            //    .OrderByDescending(t => t.Date)
-            //    .Take(20)
-            //    .ToList();
-
-            //return transactions;
         }
 
         public void DepositMoney(DataAccessLayer.Models.Transaction deposit)

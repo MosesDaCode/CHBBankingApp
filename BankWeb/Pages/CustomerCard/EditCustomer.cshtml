@@ -78,7 +78,7 @@
             const countryCodeInput = document.querySelector('#CustomerVm_CountryCode');
 
             countrySelect.addEventListener('change', function () {
-                // Exempel på hur du kan kartlägga länder till koder
+
                 const countryToCode = {
                     "Sweden": "SE",
                     "Norway": "NO",
@@ -86,7 +86,6 @@
                     "Finland": "FI"
                 };
 
-                // Uppdatera landskoden baserat på valt land
                 countryCodeInput.value = countryToCode[countrySelect.options[countrySelect.selectedIndex].text] || '';
             });
         });

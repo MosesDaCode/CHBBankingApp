@@ -60,7 +60,6 @@ namespace Services.Accounts
                     _bankAppDataContext.SaveChanges();
                 }
             }
-            //fixa krash vid radering av orginal Account
         }
     }
 }

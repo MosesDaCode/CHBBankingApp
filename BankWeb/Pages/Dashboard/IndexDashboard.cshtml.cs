@@ -18,17 +18,14 @@ namespace BankWeb.Pages.Dashboard
         public IdentityUser CurrentUser { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            // Hämtar användarinformation asynkront
             CurrentUser = await _userManager.GetUserAsync(User);
             if (CurrentUser == null)
             {
-                // Om ingen användare är inloggad kan du omdirigera till en inloggningsida eller visa ett felmeddelande
-                return RedirectToPage("/Account/Login");  // Ersätt med korrekt URL om nödvändigt
+                return RedirectToPage("/Account/Login");  
             }
 
-            // Hämtar användarroller asynkront
             var roles = await _userManager.GetRolesAsync(CurrentUser);
-            UserRole = roles.FirstOrDefault();  // Anta att användaren bara har en roll för enkelhetens skull
+            UserRole = roles.FirstOrDefault();  
 
             return Page();
         }
