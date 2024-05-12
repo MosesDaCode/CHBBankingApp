@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient.DataClassification;
+using Microsoft.Identity.Client;
 
 namespace Services.Customer
 {
@@ -43,6 +44,21 @@ namespace Services.Customer
                 customer.IsActive = false;
                 _DbContext.SaveChanges();
             }
+        }
+        
+        public IEnumerable<Account> GetCustomerAccounts(DataAccessLayer.Models.Customer customer)
+        {
+            
+            var accountIds = _DbContext.Dispositions
+                .Where(d => d.CustomerId == customer.CustomerId)
+                .Select(d => d.AccountId)
+                .ToList();
+
+            var customerAccounts = _DbContext.Accounts
+                .Where(a => accountIds.Contains(a.AccountId))
+                .ToList();
+
+            return customerAccounts;
         }
     }
 }

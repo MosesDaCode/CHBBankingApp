@@ -4,20 +4,29 @@
     Layout = "_DashboardLayout";
 }
 
-<h1>Alla Customers</h1>
-<h3>Page @Model.CurrentPage</h3>
-<form method="get">
-    <input asp-for="@Model.SearchBox" />
-    <input type="hidden" asp-for="@Model.CustomerId" />
-    <input type="submit" value="Search" />
-</form>
+<div class="row">
+    <div class="col-md-8">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <h3>All Customers</h3>
+        <h5>Page @Model.CurrentPage</h5>
+    </div>
 
-    <a class="btn btn-secondary"
-       asp-page="/Dashboard/IndexDashboard">
-        Back
-    </a>
-<a class="btn btn-success" asp-page="/CustomerCard/NewCustomer">Add customer</a>
-
+    <div class="col-md-4 text-right">
+        <form method="get" class="form-inline justify-content-end">
+            <input class="form mr-2" type="search" placeholder="Search" asp-for="@Model.SearchBox">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <div class="mt-2">
+            <a class="btn btn-secondary" asp-page="/Dashboard/IndexDashboard">Back</a>
+            <a class="btn btn-success" asp-page="/CustomerCard/NewCustomer">Add Customer</a>
+        </div>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -35,6 +44,24 @@
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
                    asp-route-sortColumn="Name"
+                   asp-route-sortOrder="desc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+            </th>
+            <th scope="col">
+                NationalId
+                <a asp-page="/Customers/Customers"
+                   asp-route-searchBox="@Model.SearchBox"
+                   asp-route-sortColumn="NationalId"
+                   asp-route-sortOrder="asc"
+                   style="text-decoration:none">
+                    <i class="fa-solid fa-angle-up"></i>
+
+                </a>
+                <a asp-page="/Customers/Customers"
+                   asp-route-searchBox="@Model.SearchBox"
+                   asp-route-sortColumn="NationalId"
                    asp-route-sortOrder="desc"
                    style="text-decoration:none">
                     <i class="fa-solid fa-angle-down"></i>
@@ -59,10 +86,10 @@
                 </a>
             </th>
             <th scope="col">
-                Country
+                StreetAdress
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
-                   asp-route-sortColumn="Country"
+                   asp-route-sortColumn="StreetAddress"
                    asp-route-sortOrder="asc"
                    style="text-decoration:none">
                     <i class="fa-solid fa-angle-up"></i>
@@ -70,7 +97,7 @@
                 </a>
                 <a asp-page="/Customers/Customers"
                    asp-route-searchBox="@Model.SearchBox"
-                   asp-route-sortColumn="Country"
+                   asp-route-sortColumn="StreetAddress"
                    asp-route-sortOrder="desc"
                    style="text-decoration:none">
                     <i class="fa-solid fa-angle-down"></i>
@@ -92,8 +119,10 @@
             <tr>
                 <td>@cust.Id</td>
                 <td>@cust.Name</td>
+                <td>@cust.NationalId</td>
                 <td>@cust.City</td>
-                <td>@cust.Country</td>
+                <td>@cust.StreetAddress</td>
+                <td></td>
                 <td><a asp-page="/CustomerCard/Customer" asp-route-id="@cust.Id" class="btn btn-primary">View Details</a></td>
             </tr>
         }
@@ -111,6 +140,9 @@
                     </a>
                 }
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td>
@@ -131,3 +163,19 @@
 
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            setTimeout(function () {
+                var messageElement = document.getElementById('successMessage');
+                if (messageElement) {
+                    messageElement.style.opacity = 0;
+                    setTimeout(function () {
+                        messageElement.style.display = 'none';
+                    }, 600); // Extra timeout för att säkerställa att opacitetsövergången är klar
+                }
+            }, 3000); // 3000 ms = 3 sekunder, startar övergången
+        };
+    </script>
+}

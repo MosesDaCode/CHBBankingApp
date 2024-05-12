@@ -36,7 +36,9 @@ namespace BankWeb.Pages.Customers
                 Id = s.CustomerId,
                 Name = s.Givenname,
                 City = s.City,
-                Country = s.Country
+                StreetAddress = s.Streetaddress,
+                Country = s.Country, 
+                NationalId = s.NationalId,
             }).ToList();
 
 

@@ -16,5 +16,7 @@ namespace Services.Customer
         void SoftDelete(int customerId);
 
         DataAccessLayer.Models.Customer GetCustomer(int customerId);
+
+        public IEnumerable<Account> GetCustomerAccounts(DataAccessLayer.Models.Customer customer);
     }
 }

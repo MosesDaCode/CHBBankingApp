@@ -22,9 +22,21 @@ namespace Services.Customers
 
             if (!string.IsNullOrEmpty(searchBox))
             {
-                query = query
+                int customerId;
+                bool isNumeric = int.TryParse(searchBox, out customerId);
+
+                if (isNumeric)
+                {
+                    query = query
+                        .Where(s => s.CustomerId == customerId);
+                }
+                else
+                {
+                    query = query
                     .Where(s => s.Givenname.Contains(searchBox) ||
                     s.City.Contains(searchBox) || s.Country.Contains(searchBox));
+                }
+                
             }
             var firstItemIndex = (pageNo - 1) * 10;
             if (firstItemIndex < 0)
@@ -52,6 +64,18 @@ namespace Services.Customers
                     query = query.OrderBy(s => s.City);
                 else if (sortOrder == "desc")
                     query = query.OrderByDescending(s => s.City);
+            
+            if (sortColumn == "NationalId")
+                if (sortOrder == "asc")
+                    query = query.OrderBy(s => s.NationalId);
+                else if (sortOrder == "desc")
+                    query = query.OrderByDescending(s => s.NationalId);
+            
+            if (sortColumn == "StreetAddress")
+                if (sortOrder == "asc")
+                    query = query.OrderBy(s => s.Streetaddress);
+                else if (sortOrder == "desc")
+                    query = query.OrderByDescending(s => s.Streetaddress);
 
             return query.ToList();
         }

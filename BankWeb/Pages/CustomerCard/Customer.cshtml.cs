@@ -1,13 +1,18 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Client;
+using Services.Accounts;
 using Services.Customer;
+using Services.Transactions;
 
 namespace BankWeb.Pages.CustomerCard
 {
     public class CustomerModel : PageModel
     {
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
+        private readonly ITransationsService _transactionsService;
         public int CustomerId { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
@@ -16,13 +21,20 @@ namespace BankWeb.Pages.CustomerCard
         public string CustomerZipcode { get; set; }
         public string CustomerCountry { get; set; }
         public string CustomerMail { get; set; }
-
-        public CustomerModel(ICustomerService customerService)
+        public string? NationalId { get; set; }
+        public string Gender { get; set; }
+        public decimal TotalBalance { get;set; }
+        public int AccountId { get; set; }
+        public List<Account> CustomerAccounts { get; set; }
+        public Disposition Disposition { get; set; }
+        public CustomerModel(ICustomerService customerService, IAccountService accountService, ITransationsService transationsService)
         {
             _customerService = customerService;
+            _accountService = accountService;
+            _transactionsService = transationsService;
         }
 
-        public void OnGet(int id)
+        public void OnGet(int id, int accountId)
         {
             var customer = _customerService.GetCustomer(id);
 
@@ -34,12 +46,26 @@ namespace BankWeb.Pages.CustomerCard
             CustomerZipcode = customer.Zipcode;
             CustomerCountry = customer.Country;
             CustomerMail = customer.Emailaddress;
+            NationalId = customer.NationalId;
+            Gender = customer.Gender;
+            
+
+            CustomerAccounts = _customerService.GetCustomerAccounts(customer).ToList(); 
+            
+            TotalBalance = CustomerAccounts.Sum(account => account.Balance);
         }
 
-        public IActionResult OnPostSoftDelete(int id)
+        public IActionResult OnPostSoftDeleteCustomer(int id)
         {
             _customerService.SoftDelete(id);
             return RedirectToPage("/Customers/Customers");
+        }
+
+        public IActionResult OnPostDeleteAccount(int accountId, int id)
+        {
+            _accountService.Delete(accountId);
+
+            return RedirectToPage("/CustomerCard/Customer", new { id = id });
         }
 
     }

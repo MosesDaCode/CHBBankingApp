@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label asp-for="CustomerVm.Gender">Gender</label>
                 <select class="form-control" asp-for="CustomerVm.Gender" asp-items="Model.TwoGenders">
-                    <option>Select your gender</option>
+                    <option value="" disabled selected>Select your gender</option>
                 </select>
 
                 <span asp-validation-for="CustomerVm.Gender" class="text-danger"></span>

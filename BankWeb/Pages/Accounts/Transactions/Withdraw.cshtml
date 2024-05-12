@@ -1,5 +1,5 @@
 ﻿@page
-@model BankWeb.Pages.Accounts.WithdrawModel
+@model WithdrawModel
 @{
     Layout = "_DashboardLayout";
 }
@@ -13,7 +13,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Withdraw</button>
     <a class="btn btn-secondary"
-       asp-page="/Accounts/IndexAccount">
-        Back
+    asp-page="/Accounts/Transactions/Transaction" asp-route-accountId="@Model.AccountId" asp-route-customerId="@Model.CustomerId">
+    Back
     </a>
 </form>
