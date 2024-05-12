@@ -71,12 +71,13 @@ namespace BankWeb.Pages.Accounts
                 _bankAppDataContext.Accounts.Update(newAcc);
                 _bankAppDataContext.Dispositions.Add(newdisposition);
                 _bankAppDataContext.SaveChanges();
-                
 
-                string returnUrl = Request.Headers["Referer"].ToString();
-                return Redirect(returnUrl);
+                TempData["Message"] = "New account created successfully!";
+
+                return RedirectToPage("/CustomerCard/Customer", new { id = customerId });
+
             }
-           
+
             return Page();
 
         }

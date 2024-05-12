@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -48,15 +49,18 @@ namespace Services.Accounts
             var accountToDelete = _bankAppDataContext.Accounts.FirstOrDefault(a => a.AccountId == accountId);
             if (accountToDelete != null)
             {
-                var dispositionAccToDelete = _bankAppDataContext.Dispositions.FirstOrDefault(d => d.AccountId == accountId);
-                if (dispositionAccToDelete != null)
+                var dispositionAccToDelete = _bankAppDataContext.Dispositions.Where(d => d.AccountId == accountId).ToList();
+                foreach(var disp in dispositionAccToDelete)
                 {
-                    _bankAppDataContext.Remove(dispositionAccToDelete);
+                    _bankAppDataContext.Remove(disp);
                 }
 
-                _bankAppDataContext.Remove(accountToDelete);
-                _bankAppDataContext.SaveChanges();
+                if (dispositionAccToDelete.Any())
+                {
+                    _bankAppDataContext.SaveChanges();
+                }
             }
+            //fixa krash vid radering av orginal Account
         }
     }
 }

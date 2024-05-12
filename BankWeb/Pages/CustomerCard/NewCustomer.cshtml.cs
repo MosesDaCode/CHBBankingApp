@@ -62,6 +62,8 @@ namespace BankWeb.Pages.CustomerCard
                     Gender = CustomerVm.Gender
                 };
                 _customerService.SaveNewCustomer(cust);
+
+                TempData["SuccessMessage"] = "New customer created successfully!";
                 return RedirectToPage("/Customers/Customers");
             }
             return Page();

@@ -85,6 +85,7 @@ namespace BankWeb.Pages.CustomerCard
 
                 _customerService.Update(custDb);
 
+                TempData["SuccessMessage"] = "Customer updated successfully!";
                 return RedirectToPage("/CustomerCard/Customer", new {id = custDb.CustomerId});
             }
 

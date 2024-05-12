@@ -5,13 +5,17 @@
 }
 
 <div class="row">
-    <!-- Titel och Pagination på vänster sida -->
     <div class="col-md-8">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
         <h3>All Customers</h3>
         <h5>Page @Model.CurrentPage</h5>
     </div>
 
-    <!-- Sökrutan och knapparna på höger sida -->
     <div class="col-md-4 text-right">
         <form method="get" class="form-inline justify-content-end">
             <input class="form mr-2" type="search" placeholder="Search" asp-for="@Model.SearchBox">
@@ -159,3 +163,19 @@
 
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            setTimeout(function () {
+                var messageElement = document.getElementById('successMessage');
+                if (messageElement) {
+                    messageElement.style.opacity = 0;
+                    setTimeout(function () {
+                        messageElement.style.display = 'none';
+                    }, 600); // Extra timeout för att säkerställa att opacitetsövergången är klar
+                }
+            }, 3000); // 3000 ms = 3 sekunder, startar övergången
+        };
+    </script>
+}

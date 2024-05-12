@@ -43,9 +43,8 @@ namespace BankWeb.ViewModels
         [Required]
         public string Emailaddress { get; set; }
 
-        [MaxLength(6)]
-        [MinLength(4)]
-        [Required]
+        
+        [Required(ErrorMessage = "Gender is required")]
         public string Gender { get; set; }  
     }
 }

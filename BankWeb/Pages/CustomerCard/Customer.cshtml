@@ -3,6 +3,20 @@
 @{
     Layout = "_DashboardLayout";
 }
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -49,7 +63,7 @@
                             <td></td>
                             <td>
                                 <form asp-page-handler="SoftDeleteCustomer" asp-route-id="@Model.CustomerId">
-                                    <button type"submit" class="btn btn-primary" style="margin-left:-50px; border-width:4px; border-color:#e60000; width: 275px">
+                                    <button type="submit" class="btn btn-primary confirm-btn" style="margin-left:-50px; border-width:4px; border-color:#e60000; width: 275px" onclick="return confirmDeactivateAction()">
                                         Deactivate Customer
                                     </button>
                                 </form>
@@ -59,7 +73,7 @@
                 </div>
             </div>
             <div class="col">
-                @if(Model.Gender == "male")
+                @if (Model.Gender == "male")
                 {
                     <img src="/assets/img/man bigger.png" alt="Customer Pic" style="width:250px; height:auto; margin-left:200px; margin-top: 50px;" />
                 }
@@ -107,7 +121,7 @@
                             </td>
                             <td class="px-3">
                                 <form method="post" asp-page-handler="DeleteAccount" asp-route-accountId="@account.AccountId" asp-route-id="@Model.CustomerId">
-                                    <button type="submit" class="btn btn-primary w-100" style="border-width: 4px; border-color: #e60000">
+                                    <button type="submit" class="btn btn-primary confirm-btn" style="border-width: 4px; border-color: #e60000" onclick="return confirmDeleteAction()">
                                         Delete account
                                     </button>
                                 </form>
@@ -130,3 +144,49 @@
 
 
 </div>
+
+
+@section Scripts {
+
+    <script>
+        window.onload = function () {
+            setTimeout(function () {
+                var messageElement = document.getElementById('successMessage');
+                if (messageElement) {
+                    messageElement.style.opacity = 0;
+                    setTimeout(function () {
+                        messageElement.style.display = 'none';
+                    }, 600); // Extra timeout för att säkerställa att opacitetsövergången är klar
+                }
+            }, 3000); // 3000 ms = 3 sekunder, startar övergången
+        };
+    </script>
+
+    <script type="text/javascript">
+        function confirmDeactivateAction() {
+            return confirm("Are you sure you wan't to Deactivate this customer?");
+        }
+
+        function confirmDeleteAction() {
+            return confirm("Are you sure you wan't to Delete this account?");
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Visa modalen
+            $('#yourButtonId').click(function () {
+                $('#confirmationModal').modal('show');
+            });
+
+            // Funktion att köra när användaren bekräftar handlingen
+            function confirmAction() {
+                // Logik här för att hantera bekräftelsen
+                $('#confirmationModal').modal('hide');
+            }
+        });
+    </script>
+
+    
+
+}
