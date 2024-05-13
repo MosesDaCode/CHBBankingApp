@@ -68,5 +68,6 @@ namespace BankWeb.Pages.CustomerCard
             return RedirectToPage("/CustomerCard/Customer", new { id = id });
         }
 
+
     }
 }
