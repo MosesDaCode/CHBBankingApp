@@ -1,37 +1,46 @@
 # CHBBankingApp
 
-## Beskrivning
+## Description
 
-CHBBankingApp är en bankapplikation som erbjuder användare en plattform för att hantera sina banktjänster. Programmet är designat för att simulera olika banktransaktioner och finansiella funktioner. En integrerad API gör det möjligt att interagera med och kontrollera applikationen enkelt.
+CHBBankingApp is a banking application that provides users with a platform to manage their banking services. The program is designed to simulate various banking transactions and financial functions. An integrated API allows for easy interaction and control of the application.
 
-## Funktioner
+## Features
 
-- Hantering av konton och transaktioner
-- Användarvänligt gränssnitt
-- Säkerhet och autentisering
-- Integrerad API för att underlätta interaktionen
+- Management of accounts and transactions
+- User-friendly interface
+- Security and authentication
+- Integrated API to facilitate interaction
 
-## Användarkonton
+## Languages
+
+The project is built with the following languages:
+- C#
+- HTML
+- CSS
+- JavaScript
+  
+## User Accounts
 
 - **Admin**
-  - Användarnamn: `admin.admin@admin.com`
-  - Lösenord: `Hejsan123#`
+  - Username: `admin.admin@admin.com`
+  - Password: `Hejsan123#`
 - **Cashier**
-  - Användarnamn: `cashier.cashier@cashier.com`
-  - Lösenord: `Hejsan123#`
+  - Username: `cashier.cashier@cashier.com`
+  - Password: `Hejsan123#`
 
 ## Installation
 
-1. Klona detta repository:
+1. Clone this repository:
    ```bash
    git clone https://github.com/MosesDaCode/CHBBankingApp.git
+2. Open the project in your preferred IDE and build the solution.
 
-2. Öppna projektet i din föredragna IDE och bygg lösningen.
+# Usage
 
-## Använding
-- Starta applikationen och logga in.
-- Hantera konton och utför transaktioner.
-- Använd den integrerade API för att styra och få feedback från applikationen.
+- Start the application and log in.
+- Manage accounts and perform transactions.
+- Use the integrated API to control and get feedback from the application.
 
-## Live version
-Du kan besöka live versionen här https://chbbank.azurewebsites.net/
+# Live Version
+
+You can visit the live version [here](https://chbbank.azurewebsites.net/).
