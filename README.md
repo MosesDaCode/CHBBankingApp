@@ -28,10 +28,10 @@ CHBBankingApp är en bankapplikation som erbjuder användare en plattform för a
 
 2. Öppna projektet i din föredragna IDE och bygg lösningen.
 
-##Använding
--Starta applikationen och logga in.
--Hantera konton och utför transaktioner.
--Använd den integrerade API för att styra och få feedback från applikationen.
+## Använding
+- Starta applikationen och logga in.
+- Hantera konton och utför transaktioner.
+- Använd den integrerade API för att styra och få feedback från applikationen.
 
-##Live version
+## Live version
 Du kan besöka live versionen här https://chbbank.azurewebsites.net/
